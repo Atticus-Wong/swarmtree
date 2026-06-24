@@ -4,6 +4,7 @@ import { Command } from "commander";
 
 import { createTask } from "./commands/create.js";
 import { init } from "./commands/init.js";
+import { list } from "./commands/list.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const program = new Command();
@@ -13,6 +14,7 @@ program
   .description("Manage parallel agent tasks with git worktrees.")
   .version("0.1.0");
 
+// init command
 program
   .command("init")
   .description("Initialize swarmtree in the current repository checkout.")
@@ -30,6 +32,7 @@ program
     await createTask({ title, base: options.base, owner: options.owner });
   });
 
+// workspace command
 const workspace = program
   .command("workspace")
   .description("Create and manage swarmtree workspace layouts.");
@@ -44,8 +47,21 @@ workspace
     });
   });
 
+// list command
+program
+  .command("list")
+  .description("List swarmtree tasks.")
+  .action(async () => {
+    await list();
+  });
+
 program.parseAsync(process.argv).catch((error: unknown) => {
   const message = error instanceof Error ? error.message : String(error);
   console.error(`Error: ${message}`);
   process.exitCode = 1;
 });
+
+// create command
+
+
+
