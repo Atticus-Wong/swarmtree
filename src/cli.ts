@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 
+import { createTask } from "./commands/create.js";
 import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
 import { initWorkspace } from "./commands/workspace.js";
@@ -21,6 +22,16 @@ program
     await init();
   });
 
+program
+  .command("create")
+  .description("Create a task branch, worktree, and repo-local task record.")
+  .argument("<title>", "Task title")
+  .option("--base <ref>", "Git ref or commit to branch from")
+  .option("--owner <owner>", "Owner recorded on the task")
+  .action(async (title: string, options: { base?: string; owner?: string }) => {
+    await createTask({ title, base: options.base, owner: options.owner });
+  });
+
 // workspace command
 const workspace = program
   .command("workspace")
@@ -36,6 +47,7 @@ workspace
     });
   });
 
+// list command
 program
   .command("list")
   .description("List swarmtree tasks.")
@@ -52,4 +64,4 @@ program.parseAsync(process.argv).catch((error: unknown) => {
 // create command
 
 
-// list command
+
