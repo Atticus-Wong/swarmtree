@@ -22,6 +22,7 @@ program
     await init();
   });
 
+// create command
 program
   .command("create")
   .description("Create a task branch, worktree, and repo-local task record.")
@@ -60,8 +61,4 @@ program.parseAsync(process.argv).catch((error: unknown) => {
   console.error(`Error: ${message}`);
   process.exitCode = 1;
 });
-
-// create command
-
-
 
