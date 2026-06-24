@@ -12,6 +12,7 @@ program
   .description("Manage parallel agent tasks with git worktrees.")
   .version("0.1.0");
 
+// init command
 program
   .command("init")
   .description("Initialize swarmtree in the current repository checkout.")
@@ -19,6 +20,7 @@ program
     await init();
   });
 
+// workspace command
 const workspace = program
   .command("workspace")
   .description("Create and manage swarmtree workspace layouts.");
@@ -38,3 +40,8 @@ program.parseAsync(process.argv).catch((error: unknown) => {
   console.error(`Error: ${message}`);
   process.exitCode = 1;
 });
+
+// create command
+
+
+// list command
