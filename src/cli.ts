@@ -5,6 +5,7 @@ import { Command } from "commander";
 import { createTask } from "./commands/create.js";
 import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
+import { show } from "./commands/show.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const program = new Command();
@@ -56,9 +57,17 @@ program
     await list();
   });
 
+// show command
+program
+  .command("show")
+  .description("Show a swarmtree task and its handoff prompt.")
+  .argument("<task-id>", "Task ID")
+  .action(async (taskId: string) => {
+    await show({ taskId });
+  });
+
 program.parseAsync(process.argv).catch((error: unknown) => {
   const message = error instanceof Error ? error.message : String(error);
   console.error(`Error: ${message}`);
   process.exitCode = 1;
 });
-
