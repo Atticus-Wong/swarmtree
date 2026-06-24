@@ -3,6 +3,7 @@
 import { Command } from "commander";
 
 import { init } from "./commands/init.js";
+import { list } from "./commands/list.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const program = new Command();
@@ -33,6 +34,13 @@ workspace
       repoUrl: name ? repoUrlOrName : undefined,
       name: name ?? repoUrlOrName,
     });
+  });
+
+program
+  .command("list")
+  .description("List swarmtree tasks.")
+  .action(async () => {
+    await list();
   });
 
 program.parseAsync(process.argv).catch((error: unknown) => {
