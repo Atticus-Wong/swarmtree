@@ -1,0 +1,43 @@
+{
+  "name": "swarmtree",
+  "version": "0.1.0",
+  "description": "A TypeScript CLI for managing parallel agent tasks with git worktrees.",
+  "type": "module",
+  "packageManager": "pnpm@10.7.0",
+  "bin": {
+    "swarmtree": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/cli.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "cli",
+    "git",
+    "worktree",
+    "agents"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "execa": "^9.6.1",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
