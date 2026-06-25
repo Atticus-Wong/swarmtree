@@ -2,6 +2,7 @@ import { createRequire } from "node:module";
 
 import { Command } from "commander";
 
+import { clean } from "./commands/clean.js";
 import { createTask } from "./commands/create.js";
 import { done } from "./commands/done.js";
 import { init } from "./commands/init.js";
