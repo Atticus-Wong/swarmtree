@@ -77,6 +77,14 @@ export function createProgram(): Command {
     });
 
   program
+    .command("status")
+    .description("Show a swarmtree task's worktree git status.")
+    .argument("<task-id>", "Task ID")
+    .action(async (taskId: string) => {
+      await status({ taskId });
+    });
+
+  program
     .command("done")
     .description("Mark a swarmtree task done.")
     .argument("<task-id>", "Task ID")

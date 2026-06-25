@@ -26,6 +26,7 @@ describe("cli entrypoint", () => {
     expect(stdout).toContain("Usage: swarmtree [options] [command]");
     expect(stdout).toContain("Commands:");
     expect(stdout).toContain("done");
+    expect(stdout).toContain("status");
   });
 
   it.each(["-V", "--version"])("prints the package version for %s", async (flag) => {
