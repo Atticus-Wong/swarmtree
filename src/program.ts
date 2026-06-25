@@ -7,6 +7,7 @@ import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
 import { show } from "./commands/show.js";
 import { start } from "./commands/start.js";
+import { status } from "./commands/status.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const require = createRequire(import.meta.url);
@@ -72,6 +73,14 @@ export function createProgram(): Command {
     .argument("<task-id>", "Task ID")
     .action(async (taskId: string) => {
       await start({ taskId });
+    });
+
+  program
+    .command("status")
+    .description("Show a task's git status, branch, ahead/behind counts, and metadata.")
+    .argument("<task-id>", "Task ID")
+    .action(async (taskId: string) => {
+      await status({ taskId });
     });
 
   return program;
