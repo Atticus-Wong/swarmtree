@@ -3,6 +3,7 @@ import { createRequire } from "node:module";
 import { Command } from "commander";
 
 import { createTask } from "./commands/create.js";
+import { done } from "./commands/done.js";
 import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
 import { show } from "./commands/show.js";
@@ -72,6 +73,16 @@ export function createProgram(): Command {
     .argument("<task-id>", "Task ID")
     .action(async (taskId: string) => {
       await start({ taskId });
+    });
+
+  program
+    .command("done")
+    .description("Mark a swarmtree task done.")
+    .argument("<task-id>", "Task ID")
+    .option("--validation <notes>", "Validation notes to record on the task")
+    .option("--result <summary>", "Result summary to record on the task")
+    .action(async (taskId: string, options: { result?: string; validation?: string }) => {
+      await done({ taskId, result: options.result, validation: options.validation });
     });
 
   return program;
