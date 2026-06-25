@@ -8,6 +8,7 @@ import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
 import { show } from "./commands/show.js";
 import { start } from "./commands/start.js";
+import { status } from "./commands/status.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const require = createRequire(import.meta.url);
