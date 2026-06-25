@@ -6,7 +6,7 @@ A CLI tool for managing git worktrees with AI workflows.
 
 ### Prerequisites
 
-- Node.js 20 or newer
+- Node.js 20.12.0 or newer
 - pnpm 10.7.0 or newer
 - Git
 
