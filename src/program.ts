@@ -2,6 +2,7 @@ import { createRequire } from "node:module";
 
 import { Command } from "commander";
 
+import { clean } from "./commands/clean.js";
 import { createTask } from "./commands/create.js";
 import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
@@ -72,6 +73,16 @@ export function createProgram(): Command {
     .argument("<task-id>", "Task ID")
     .action(async (taskId: string) => {
       await start({ taskId });
+    });
+
+  program
+    .command("clean")
+    .description("Remove a completed task worktree.")
+    .argument("<task-id>", "Task ID")
+    .option("-y, --yes", "Confirm worktree removal without prompting.")
+    .option("--delete-branch", "Delete the task branch after removing the worktree.")
+    .action(async (taskId: string, options: { yes?: boolean; deleteBranch?: boolean }) => {
+      await clean({ taskId, yes: options.yes, deleteBranch: options.deleteBranch });
     });
 
   return program;
