@@ -4,10 +4,12 @@ import { Command } from "commander";
 
 import { clean } from "./commands/clean.js";
 import { createTask } from "./commands/create.js";
+import { done } from "./commands/done.js";
 import { init } from "./commands/init.js";
 import { list } from "./commands/list.js";
 import { show } from "./commands/show.js";
 import { start } from "./commands/start.js";
+import { status } from "./commands/status.js";
 import { initWorkspace } from "./commands/workspace.js";
 
 const require = createRequire(import.meta.url);
@@ -76,13 +78,21 @@ export function createProgram(): Command {
     });
 
   program
-    .command("clean")
-    .description("Remove a completed task worktree.")
+    .command("status")
+    .description("Show a swarmtree task's worktree git status.")
     .argument("<task-id>", "Task ID")
-    .option("-y, --yes", "Confirm worktree removal without prompting.")
-    .option("--delete-branch", "Delete the task branch after removing the worktree.")
-    .action(async (taskId: string, options: { yes?: boolean; deleteBranch?: boolean }) => {
-      await clean({ taskId, yes: options.yes, deleteBranch: options.deleteBranch });
+    .action(async (taskId: string) => {
+      await status({ taskId });
+    });
+
+  program
+    .command("done")
+    .description("Mark a swarmtree task done.")
+    .argument("<task-id>", "Task ID")
+    .option("--validation <notes>", "Validation notes to record on the task")
+    .option("--result <summary>", "Result summary to record on the task")
+    .action(async (taskId: string, options: { result?: string; validation?: string }) => {
+      await done({ taskId, result: options.result, validation: options.validation });
     });
 
   return program;
