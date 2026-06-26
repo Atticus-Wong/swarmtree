@@ -86,6 +86,16 @@ export function createProgram(): Command {
     });
 
   program
+    .command("clean")
+    .description("Remove a done swarmtree task's worktree.")
+    .argument("<task-id>", "Task ID")
+    .option("--yes", "Remove the worktree without an interactive confirmation")
+    .option("--delete-branch", "Delete the task branch after removing the worktree")
+    .action(async (taskId: string, options: { deleteBranch?: boolean; yes?: boolean }) => {
+      await clean({ taskId, yes: options.yes, deleteBranch: options.deleteBranch });
+    });
+
+  program
     .command("done")
     .description("Mark a swarmtree task done.")
     .argument("<task-id>", "Task ID")
