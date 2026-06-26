@@ -15,9 +15,9 @@ The core job: make it easy to create, inspect, resume, complete, and clean up pa
   - [x] `swarmtree list`: show tasks by status, branch, worktree path, and owner.
   - [x] `swarmtree show <task-id>`: print task details and handoff prompt.
   - [x] `swarmtree start <task-id>`: print `cd <worktree>` plus agent-ready context.
-  - [ ] `swarmtree status <task-id>`: show git status, branch, commits ahead/behind, and task metadata.
-  - [ ] `swarmtree done <task-id>`: mark complete after optional validation notes.
-  - [ ] `swarmtree clean <task-id>`: remove completed worktree only after explicit confirmation.
+  - [x] `swarmtree status <task-id>`: show git status, branch, commits ahead/behind, and task metadata.
+  - [x] `swarmtree done <task-id>`: mark complete after optional validation notes.
+  - [x] `swarmtree clean <task-id>`: remove completed worktree only after explicit confirmation.
 - Store state in human-readable repo-local YAML under `.swarmtree/`:
   - `.swarmtree/config.yml`
   - `.swarmtree/tasks/<task-id>.yml`
